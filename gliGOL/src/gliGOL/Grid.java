@@ -1,7 +1,6 @@
 package gliGOL;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 
 public class Grid {
 	private Cell grid[][];
@@ -10,9 +9,9 @@ public class Grid {
 	private int cellSize;
 
 	public Grid() {
-		setGridWidth(10);
-		setGridHeight(10);
-		setCellSize(8);
+		setGridWidth(128);
+		setGridHeight(128);
+		setCellSize(16);
 		grid = new Cell[getGridHeight()][getGridWidth()];
 		for (int x = 0; x < getGridWidth(); x++) {
 			for (int y = 0; y < getGridHeight(); y++) {
@@ -75,7 +74,11 @@ public class Grid {
 	}
 
 	public void draw(Graphics g) {
-		Graphics2D g2 = (Graphics2D) g;
+		for (int x = 0; x < gridWidth; x++) {
+			for (int y = 0; y < gridHeight; y++) {
+				grid[y][x].draw(g);
+			}
+		}
 
 	}
 }

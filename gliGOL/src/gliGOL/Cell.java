@@ -167,11 +167,14 @@ public class Cell {
 
 	public void draw(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
-		g2.setColor(this.getColor());
+		g2.setColor(color);
 		g2.drawRect((x / cellSize) * cellSize, ((y / cellSize) * cellSize), cellSize, cellSize);
+		if (isAlive()) {
+			g2.fillRect((x / cellSize) * cellSize, ((y / cellSize) * cellSize), cellSize, cellSize);
+		}
 	}
 
-	private Color getColor() {
+	public Color getColor() {
 		return color;
 	}
 
