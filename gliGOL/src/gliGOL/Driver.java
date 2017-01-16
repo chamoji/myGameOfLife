@@ -1,5 +1,6 @@
 package gliGOL;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -14,22 +15,23 @@ public class Driver extends JPanel implements KeyListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	public Grid grid;
-	private int MINSPEED;
 	public static boolean running;
 	public static Random rng;
 
 	public Driver() {
 		rng = new Random();
-		grid = new Grid(200, 100, 8, 3, 2);
+		grid = new Grid(475, 250, 4);
 		running = false;
 	}
 
 	public static void main(String[] args) {
 		Driver d = new Driver();
+		d.setBackground(Color.black);
 
 		JFrame f = new JFrame("gliGOL");
 		f.add(d);
 		f.addKeyListener(d);
+		f.addMouseMotionListener(d.grid);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(800, 600);
 		f.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -39,7 +41,7 @@ public class Driver extends JPanel implements KeyListener {
 			if (running) {
 				d.grid.nextGridGen();
 				try {
-					Thread.sleep(100);
+					Thread.sleep(60);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -57,8 +59,9 @@ public class Driver extends JPanel implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-
+		if (e.getKeyCode() == KeyEvent.VK_INSERT) {
+			grid.spawn();
+		}
 	}
 
 	@Override
@@ -71,7 +74,14 @@ public class Driver extends JPanel implements KeyListener {
 			}
 		}
 		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-			grid = new Grid(200, 100, 8, 3, 2);
+			grid.shuffle();
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_HOME) {
+			grid.toggle();
+		}
+		if (e.getKeyCode() == KeyEvent.VK_DELETE) {
+			grid.clear();
 		}
 	}
 

@@ -8,6 +8,7 @@ public class Cell {
 	private int cellSize;
 	private boolean isAlive;
 	private boolean isAliveNext;
+
 	private Color colorAlive;
 	private Color colorDead;
 	private Color colorGrid;
@@ -31,7 +32,7 @@ public class Cell {
 		this.colorDead = c;
 	}
 
-	private void setColorAlive(Color c) {
+	void setColorAlive(Color c) {
 		this.colorAlive = c;
 
 	}
