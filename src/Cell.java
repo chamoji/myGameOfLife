@@ -1,5 +1,3 @@
-package gliGOL;
-
 import java.awt.Color;
 
 public class Cell {
@@ -13,15 +11,18 @@ public class Cell {
 	private Color colorDead;
 	private Color colorGrid;
 
+	private static final Color COLOR_GB_SCREEN = new Color(155,188,15);
+
 	public Cell(int x, int y, int cellSize, boolean isAlive) {
+
 		this.setX(x);
 		this.setY(y);
 		this.setAlive(isAlive);
 		this.setAliveNext(false);
 		this.setCellSize(cellSize);
-		this.setColorAlive(Color.white);
-		this.setColorDead(Color.black);
-		this.setColorGrid(Color.black);
+		this.setColorAlive(Color.black);
+		this.setColorDead(COLOR_GB_SCREEN);
+		this.setColorGrid(COLOR_GB_SCREEN);
 	}
 
 	private void setColorGrid(Color c) {
